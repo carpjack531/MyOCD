@@ -1,0 +1,1 @@
+Please set the folder selection to "Project Files", otherwise a lot of my code wont show up

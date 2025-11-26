@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_trigger_response"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.TriggerResponse">
+
+    <TextView
+        android:id="@+id/compulsion_header"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/trigger_header_txt" />
+
+    <EditText
+        android:id="@+id/compulsion_input"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:isScrollContainer="true"
+        android:maxHeight="@dimen/entry_input_max_height"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="left" />
+
+    <TextView
+        android:id="@+id/assessment_header"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/entry_gap"
+        android:gravity="center"
+        android:text="@string/response_header_txt" />
+
+    <EditText
+        android:id="@+id/assessment_input"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:isScrollContainer="true"
+        android:maxHeight="@dimen/entry_input_max_height"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="left" />
+
+    <TextView
+        android:id="@+id/outcome_header"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/entry_gap"
+        android:gravity="center"
+        android:text="@string/response_severity_header_txt" />
+
+    <EditText
+        android:id="@+id/outcome_input"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:inputType="numberSigned" />
+
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/entry_gap"
+        android:text="@string/next_btn_label" />
+
+</LinearLayout>

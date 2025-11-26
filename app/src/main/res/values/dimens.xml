@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="entry_comp_width">200dp</dimen>
+    <dimen name="entry_input_max_height">100dp</dimen>
+    <dimen name="entry_gap">75dp</dimen>
+</resources>
