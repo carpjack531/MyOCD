@@ -14,7 +14,7 @@ enum class  ACTIVITIES{
     HISTORY,
     SETTINGS,
     VIEW_ENTRIES,
-
+    HELP,
 }
 
 class MainActivity : AppCompatActivity() {
