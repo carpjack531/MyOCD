@@ -8,7 +8,7 @@
     tools:context=".fragments.ObessionCompulsion">
 
     <TextView
-        android:id="@+id/compulsion_header"
+        android:id="@+id/trigger_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -16,7 +16,7 @@
         android:text="@string/compulsion_header_txt" />
 
     <EditText
-        android:id="@+id/compulsion_input"
+        android:id="@+id/trigger_input"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -27,7 +27,7 @@
         android:verticalScrollbarPosition="left" />
 
     <TextView
-        android:id="@+id/assessment_header"
+        android:id="@+id/response_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -36,7 +36,7 @@
         android:text="@string/assessment_header_txt" />
 
     <EditText
-        android:id="@+id/assessment_input"
+        android:id="@+id/response_input"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -47,7 +47,7 @@
         android:verticalScrollbarPosition="left" />
 
     <TextView
-        android:id="@+id/outcome_header"
+        android:id="@+id/response_severity_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -56,7 +56,7 @@
         android:text="@string/outcome_header_txt" />
 
     <EditText
-        android:id="@+id/outcome_input"
+        android:id="@+id/response_severity_input"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
