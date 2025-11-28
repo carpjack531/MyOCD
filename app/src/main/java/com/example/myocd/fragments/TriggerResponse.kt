@@ -1,6 +1,7 @@
 package com.example.myocd.fragments
 
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +51,8 @@ class TriggerResponse : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[AddEntryViewModel::class.java];
         binding.apply{
             nextBtn.setOnClickListener {
+
+
                 if(!validateInput()){
                     //Change this to be less robotic
                    val toast =  Toast.makeText(
