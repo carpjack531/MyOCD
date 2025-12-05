@@ -19,13 +19,10 @@ import com.example.myocd.pages.MainActivity
 private const val TITLE_ARG:String = "Test"
 class MenuBar : Fragment() {
     private lateinit var return_home_btn: Button
-    private var title: String? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            title = it.getString(TITLE_ARG)
-        }
+
     }
 
     override fun onCreateView(
@@ -44,18 +41,17 @@ class MenuBar : Fragment() {
             startActivity(intent)
             requireActivity().finish()
         }
+        val title = arguments?.getString(TITLE_ARG) ?: "Default Title"
+
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitle( title);
-        println("TITLE: " + toolbar.title);
+        toolbar.title = title;
+
 
 
     }
 
 
     companion object {
-        /**
-         * @param header Parameter 1
-         */
         fun newInstance(header: String) = MenuBar().apply {
             arguments = Bundle().apply {
                 putString(TITLE_ARG, header)

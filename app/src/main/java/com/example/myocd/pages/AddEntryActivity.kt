@@ -22,13 +22,15 @@ class AddEntryActivity : AppCompatActivity() {
     }
 
 
-    val menuBarFragment = MenuBar.newInstance("Home")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityAddEntryPageBinding.inflate(layoutInflater);
         setContentView(binding.root);
 
+
+
+        val menuBarFragment = MenuBar.newInstance("Add Entry");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragmentMenuBar)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -37,7 +39,7 @@ class AddEntryActivity : AppCompatActivity() {
         }
 
         supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentMenuBar.id, menuBarFragment)
+            .add(binding.fragmentMenuBar.id, menuBarFragment)
             .commit()
 
         viewModel.page.observe(this){ newPage->
