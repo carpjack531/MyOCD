@@ -49,9 +49,7 @@ class OutcomeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Invalid input. Please check the fields and try again.", Toast.LENGTH_SHORT).show()
                 }
                 else {
-
                     viewModel.saveEntryToDatabase();
-                    viewModel.setPage(0);
                 }
             }
         }

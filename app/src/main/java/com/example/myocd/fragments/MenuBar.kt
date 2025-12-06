@@ -37,9 +37,7 @@ class MenuBar : Fragment() {
         return_home_btn = view.findViewById(R.id.return_home_btn)
 
         return_home_btn.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            requireActivity().finish();
         }
         val title = arguments?.getString(TITLE_ARG) ?: "Default Title"
 

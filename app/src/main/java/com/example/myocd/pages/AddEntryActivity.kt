@@ -1,6 +1,7 @@
 package com.example.myocd.pages
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -38,9 +39,8 @@ class AddEntryActivity : AppCompatActivity() {
                 .commit()
         }
 
-        viewModel.page.observe(this){ newPage->
-            if(newPage == 0){
-            }
+        //Observable: Check if a page swap is called
+        viewModel._readablePage.observe(this){ newPage->
             if(newPage == 2){
                 obsessionCompulsion = ObsessionCompulsionFragment();
                 supportFragmentManager.beginTransaction()
@@ -55,8 +55,12 @@ class AddEntryActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.page.observe(this){
-
+        //Observable: Check if operation is complete
+        viewModel._readableOperationComplete.observe(this){operationSuccessful->
+            if(operationSuccessful){
+                Toast.makeText(this@AddEntryActivity, "Entry saved successfully", Toast.LENGTH_SHORT).show()
+                finish();
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.myocd.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,11 +16,17 @@ import java.time.format.DateTimeFormatter
 class EntryViewModel : ViewModel() {
     private val db = Firebase.database;
     private val entry = MutableLiveData<Entry>(Entry());
-    var page = MutableLiveData<Int>(1);
+    private val page = MutableLiveData<Int>(1);
+    private val operationComplete = MutableLiveData<Boolean>(false);
+    public  val _readablePage: LiveData<Int> = page;
+    public val _readableOperationComplete: LiveData<Boolean> =  operationComplete;
 
-    fun setPage(page: Int) {
+
+
+
+    fun setPage(newPage: Int) {
         println("setPage: $page");
-        this.page.value = page;
+        page.value = newPage;
     }
 
     fun setTriggerResponse(trigger: String, resp: String, respSev: String): Boolean {
@@ -80,7 +87,7 @@ class EntryViewModel : ViewModel() {
 
     }
 
-    fun saveEntryToDatabase() {
+    fun saveEntryToDatabase(){
         viewModelScope.launch {
             try {
                 val currentTime = LocalTime.now();
@@ -93,8 +100,8 @@ class EntryViewModel : ViewModel() {
                     entryRef.push().setValue(formattedDate).await();
                 }
                 entryRef = entryRef.child(formattedDate);
-
-                println("Trigger Value at time of write: " + entry.value!!.trigger);
+                entryRef.push().setValue(entry.value).await();
+                operationComplete.value = true;
 
             } catch (e: Exception) {
                 println("saveEntryException: " + e.message);
