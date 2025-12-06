@@ -15,9 +15,6 @@
             android:name=".fragments.OutcomeFragment"
             android:exported="false" />
         <activity
-            android:name=".pages.ViewActivity"
-            android:exported="false" />
-        <activity
             android:name=".pages.ChatActivity"
             android:exported="false" />
         <activity

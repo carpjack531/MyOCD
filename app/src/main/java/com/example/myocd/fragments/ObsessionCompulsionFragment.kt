@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.myocd.databinding.FragmentObsessionCompulsionBinding
-import com.example.myocd.viewmodels.EntryViewModel
+import com.example.myocd.viewmodels.AddEntryViewModel
 
 
 
 class ObsessionCompulsionFragment : Fragment() {
     private lateinit var binding: FragmentObsessionCompulsionBinding;
 
-    val viewModel: EntryViewModel by lazy{
-        ViewModelProvider(requireActivity())[EntryViewModel::class.java];
+    val viewModel: AddEntryViewModel by lazy{
+        ViewModelProvider(requireActivity())[AddEntryViewModel::class.java];
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

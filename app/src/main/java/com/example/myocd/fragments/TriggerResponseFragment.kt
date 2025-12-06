@@ -9,15 +9,15 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.myocd.databinding.FragmentTriggerResponseBinding
-import com.example.myocd.viewmodels.EntryViewModel
+import com.example.myocd.viewmodels.AddEntryViewModel
 
 
 
 class TriggerResponseFragment : Fragment() {
 
     private lateinit var binding: FragmentTriggerResponseBinding;
-    private val viewModel: EntryViewModel by lazy{
-        ViewModelProvider(requireActivity())[EntryViewModel::class.java];
+    private val viewModel: AddEntryViewModel by lazy{
+        ViewModelProvider(requireActivity())[AddEntryViewModel::class.java];
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

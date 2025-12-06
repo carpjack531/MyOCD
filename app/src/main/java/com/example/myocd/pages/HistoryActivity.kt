@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.myocd.R
 
 class HistoryActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

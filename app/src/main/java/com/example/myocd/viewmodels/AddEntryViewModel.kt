@@ -3,26 +3,15 @@ package com.example.myocd.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.myocd.models.Entry
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 
-class EntryViewModel : ViewModel() {
-    private val db = Firebase.database;
+//Main issue is the pages, they work fine-but they could 100% be a seperate viewmodel
+class AddEntryViewModel : ViewModel() {
+
     private val entry = MutableLiveData<Entry>(Entry());
     private val page = MutableLiveData<Int>(1);
-    private val operationComplete = MutableLiveData<Boolean>(false);
-    public  val _readablePage: LiveData<Int> = page;
-    public val _readableOperationComplete: LiveData<Boolean> =  operationComplete;
-
-
-
+    val _readablePage: LiveData<Int> = page;
+    val _readableEntry: LiveData<Entry> = entry;
 
     fun setPage(newPage: Int) {
         println("setPage: $page");
@@ -79,33 +68,21 @@ class EntryViewModel : ViewModel() {
         return true
     }
 
-    fun fetchEntries() {
 
-    }
 
-    fun fetchEntry() {
 
-    }
-
-    fun saveEntryToDatabase(){
-        viewModelScope.launch {
-            try {
-                val currentTime = LocalTime.now();
-                val formattedDate = LocalDate.now()
-                    .format(DateTimeFormatter.ofPattern("yy-MM-dd"));
-
-                var entryRef = db.reference.child(formattedDate);
-                val snapshot = entryRef.get().await();
-                if (!snapshot.exists()) {
-                    entryRef.push().setValue(formattedDate).await();
-                }
-                entryRef = entryRef.child(formattedDate);
-                entryRef.push().setValue(entry.value).await();
-                operationComplete.value = true;
-
-            } catch (e: Exception) {
-                println("saveEntryException: " + e.message);
-            }
+    fun printEntryString(){
+        entry.value.apply{
+            println("Trigger: ${trigger}" +
+                    "\nResponse Desc: ${respDesc}" +
+                    "\nResponse Sev: ${respSev}" +
+                    "\nObsession: ${obsession}" +
+                    "$\nCompulsion: ${compulsion}" +
+                    "\nAssessment: ${assessment}" +
+                    "\nOutcome: ${outcome}")
         }
+
     }
+
+
 }
