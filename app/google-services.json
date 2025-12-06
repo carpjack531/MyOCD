@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "478637975078",
+    "project_id": "myocd-45282",
+    "storage_bucket": "myocd-45282.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478637975078:android:5594d26d603fc3aaaf68e7",
+        "android_client_info": {
+          "package_name": "com.example.myocd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCTqgZuMJ65we0Xyy_eQhuomU05Vrf6ps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

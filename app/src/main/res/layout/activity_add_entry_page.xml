@@ -5,7 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    android:scrollbars="vertical"
     tools:context=".pages.AddEntryActivity">
+
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentMenuBar"
@@ -19,11 +23,12 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentTriggerResponse"
-        android:name="com.example.myocd.fragments.TriggerResponse"
+        android:name="com.example.myocd.fragments.TriggerResponseFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentMenuBar" />
 

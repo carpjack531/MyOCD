@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.TriggerResponse">
+    tools:context=".fragments.TriggerResponseFragment">
 
     <TextView
         android:id="@+id/trigger_header"
@@ -23,6 +23,7 @@
         android:inputType="textMultiLine"
         android:isScrollContainer="true"
         android:maxHeight="@dimen/entry_input_max_height"
+        android:minHeight="48dp"
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="left" />
 
@@ -61,10 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        android:inputType="numberSigned" />
+        android:inputType="numberSigned"
+        android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/next_btn"
+        android:id="@+id/trigger_response_next_btn"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

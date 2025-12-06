@@ -19,8 +19,11 @@
     <string name="trigger_header_txt">Identify the triggering situation, image, thought, or feeling </string>
     <string name="response_header_txt">What was your response?</string>
     <string name="response_severity_header_txt">How intense was it? (0-100%) </string>
-    <string name="compulsion_header_txt">What did you do in response do it?</string>
+    <string name="obsession_header_txt">What obsessional thoughts followed the trigger?</string>
+    <string name="compulsion_header_txt">What compulsion did you engage in to mitigate these feelings?</string>
     <string name="assessment_header_txt">What do you think would be a helpful alternative interpretation or response to said action?</string>
     <string name="outcome_header_txt">With that assesment in mind, re-rate your emotion (0-100%) </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

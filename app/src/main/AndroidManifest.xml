@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyOCD">
         <activity
+            android:name=".fragments.OutcomeFragment"
+            android:exported="false" />
+        <activity
             android:name=".pages.ViewActivity"
             android:exported="false" />
         <activity

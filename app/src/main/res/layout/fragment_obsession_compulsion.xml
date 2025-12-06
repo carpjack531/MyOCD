@@ -1,33 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/obessionContainer"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.ObsessionCompulsionFragment"
     android:orientation="vertical"
-    tools:context=".fragments.ObessionCompulsion">
+>
 
     <TextView
-        android:id="@+id/trigger_header"
+        android:id="@+id/obsession_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
+        android:text="@string/obsession_header_txt" />
+
+    <EditText
+        android:id="@+id/obsession_input"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/compulsion_header"
+        android:layout_width="@dimen/entry_comp_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/entry_gap"
+        android:gravity="center"
         android:text="@string/compulsion_header_txt" />
 
     <EditText
-        android:id="@+id/trigger_input"
+        android:id="@+id/compulsion_input"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:isScrollContainer="true"
         android:maxHeight="@dimen/entry_input_max_height"
+        android:minHeight="48dp"
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="left" />
 
     <TextView
-        android:id="@+id/response_header"
+        android:id="@+id/assessment_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -36,39 +55,18 @@
         android:text="@string/assessment_header_txt" />
 
     <EditText
-        android:id="@+id/response_input"
-        android:layout_width="@dimen/entry_comp_width"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textMultiLine"
-        android:isScrollContainer="true"
-        android:maxHeight="@dimen/entry_input_max_height"
-        android:scrollbars="vertical"
-        android:verticalScrollbarPosition="left" />
-
-    <TextView
-        android:id="@+id/response_severity_header"
-        android:layout_width="@dimen/entry_comp_width"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/entry_gap"
-        android:gravity="center"
-        android:text="@string/outcome_header_txt" />
-
-    <EditText
-        android:id="@+id/response_severity_input"
+        android:id="@+id/assessment_input"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        android:inputType="numberSigned" />
+        android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/next_btn"
+        android:id="@+id/obsession_compulsion_next_btn"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/entry_gap"
-        android:text="@string/submit_entry_btn_label" />
-
+        android:text="@string/next_btn_label" />
 </LinearLayout>
