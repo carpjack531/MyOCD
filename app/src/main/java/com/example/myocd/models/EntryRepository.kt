@@ -24,11 +24,11 @@ class EntryRepository {
                     .format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
 
-                var entryRef = db.reference.child(formattedDate);
-                val snapshot = entryRef.get().await();
-                if (!snapshot.exists()) {
-                    entryRef.push().setValue(formattedDate).await();
-                }
+                var entryRef = db.reference
+                    .child("entries")
+                    .child(formattedDate)
+                    .child(formattedTime);
+
                 entryRef = entryRef.child(formattedTime);
                 entryRef.setValue(entry).await();
 
@@ -40,4 +40,29 @@ class EntryRepository {
 
         return true;
     }
+    suspend fun getAllEntries(): Boolean{
+        withContext(Dispatchers.IO){
+            try{
+
+            }
+            catch(e:Exception){
+                println("getAllEntries Error: ${e.message}")
+                return@withContext false;
+            }
+        }
+
+        return true;
+    }
+
+    fun getEntriesByDateTime(){
+
+    }
+
+    fun getEntriesByDate(){
+
+    }
+
+
+
+
 }

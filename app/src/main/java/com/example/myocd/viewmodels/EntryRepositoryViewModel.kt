@@ -9,6 +9,7 @@ import com.example.myocd.models.EntryRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
+
 class EntryRepositoryViewModel: ViewModel(){
     private val repo =  EntryRepository();
 
@@ -31,17 +32,19 @@ class EntryRepositoryViewModel: ViewModel(){
         }
     }
 
+    //Expensive, should cache results
+    fun getEntryDates(){
+        viewModelScope.launch{
 
+        }
+    }
 
     fun getEntriesByDate(date:String){
 
     }
 
-    fun getEntryByTime(date:String){
+    fun getEntryByDateTime(date:String, time:String){
 
     }
 
-    fun updateEntry(){
-
-    }
  }
