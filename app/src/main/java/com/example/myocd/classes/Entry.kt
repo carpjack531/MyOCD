@@ -1,8 +1,4 @@
-package com.example.myocd.models
-
-
-
-
+package com.example.myocd.classes
 
  data class Entry(
     var trigger: String = "",
@@ -14,6 +10,11 @@ package com.example.myocd.models
     var outcome:Int=0,
 )
 
+data class TimeEntry(
+   val time: String,
+   val entry: Entry?,
+
+)
 
 
 

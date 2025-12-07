@@ -17,7 +17,7 @@ import com.example.myocd.viewmodels.EntryRepositoryViewModel
 class AddEntryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddEntryPageBinding;
     private lateinit var obsessionCompulsion: ObsessionCompulsionFragment;
-    val entryViewModel: AddEntryViewModel by lazy{
+    val entryViewModel: AddEntryViewModel by lazy {
         ViewModelProvider(this)[AddEntryViewModel::class.java];
     }
     val entryRepo: EntryRepositoryViewModel by lazy{
@@ -61,13 +61,12 @@ class AddEntryActivity : AppCompatActivity() {
 
         //Observable: Check if operation is complete
         entryRepo.readableOperationSuccessful.observe(this){operationSuccessful->
-            if(operationSuccessful == true){
-                Toast.makeText(this@AddEntryActivity, "Entry saved successfully", Toast.LENGTH_SHORT).show()
+            if(operationSuccessful.isNotBlank()) {
+                Toast.makeText(this@AddEntryActivity, operationSuccessful, Toast.LENGTH_SHORT)
+                    .show()
                 finish();
             }
-            else if(operationSuccessful==false){
-                Toast.makeText(this@AddEntryActivity, "Entry saved error", Toast.LENGTH_SHORT).show()
-            }
+
         }
     }
 

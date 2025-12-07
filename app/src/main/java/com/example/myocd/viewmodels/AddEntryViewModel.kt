@@ -3,7 +3,7 @@ package com.example.myocd.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myocd.models.Entry
+import com.example.myocd.classes.Entry
 
 //Main issue is the pages, they work fine-but they could 100% be a seperate viewmodel
 class AddEntryViewModel : ViewModel() {

@@ -35,7 +35,6 @@ class ObsessionCompulsionFragment : Fragment() {
     {
         super.onViewCreated(view, savedInstanceState);
         binding.apply {
-
             obsessionCompulsionNextBtn.setOnClickListener {
                 val response =(
                     viewModel.setObsessionCompulsion(

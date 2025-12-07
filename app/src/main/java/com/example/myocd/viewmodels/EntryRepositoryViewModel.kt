@@ -4,47 +4,70 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myocd.models.Entry
-import com.example.myocd.models.EntryRepository
+import com.example.myocd.classes.Entry
+import com.example.myocd.classes.EntryRepository
+import com.example.myocd.classes.TimeEntry
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 
 class EntryRepositoryViewModel: ViewModel(){
     private val repo =  EntryRepository();
 
-    private val operationSuccessful = MutableLiveData<Boolean?>(null);
-    private val dates = MutableLiveData<MutableList<String>>(mutableListOf<String>())
-    private val entries = MutableLiveData<MutableList<Entry>>(mutableListOf<Entry>())
+    private val operationSuccessful = MutableLiveData<String>("");
+    private val dates = MutableLiveData<List<String>>(mutableListOf<String>())
+    private val entries = MutableLiveData<List<TimeEntry>>(mutableListOf<TimeEntry>())
 
-    public val readableOperationSuccessful: LiveData<Boolean?> =  operationSuccessful;
-    public val readableDates:LiveData<MutableList<String>> = dates;
-    public val readableEntries:LiveData<MutableList<Entry>> = entries;
+    public val readableOperationSuccessful: LiveData<String> =  operationSuccessful;
+    public val readableEntries:LiveData<List<TimeEntry>> = entries;
+    public val readableDates:LiveData<List<String>> = dates;
+
+    //Should return entry, for now dosent
 
 
 
     fun saveEntryToDatabase(entry:Entry){
         viewModelScope.launch {
-            val response = repo.saveEntryToDatabase(entry);
-            operationSuccessful.value = response;
-
-
+            operationSuccessful.value = repo.saveEntryToDatabase(entry);
         }
     }
 
-    //Expensive, should cache results
+    //Expensive, should be cached
     fun getEntryDates(){
-        viewModelScope.launch{
+            viewModelScope.launch {
+                try {
+                    val response = repo.getEntryDates();
+                    if (response == null) {
+                        throw Exception("Get Entry Dates Failed");
+                    }
 
-        }
+                    dates.value= response;
+                }
+                    catch(e:Exception) {
+                        operationSuccessful.value = "${e.message}";
+                        return@launch;
+                    }
+            }
     }
 
-    fun getEntriesByDate(date:String){
-
+    fun getEntriesByDates(date: String){
+        viewModelScope.launch{
+            try {
+                val response = repo.getEntriesByDate(date);
+                if (response == null){
+                    throw Exception("Get Entries By Dates Failed");
+                }
+            }
+            catch (e:Exception){
+                operationSuccessful.value = "${e.message}";
+                return@launch;
+            }
+        }
     }
 
     fun getEntryByDateTime(date:String, time:String){
+        viewModelScope.launch{
 
+        }
     }
 
  }
