@@ -28,8 +28,7 @@ class EntryRepository {
                     .child("entries")
                     .child(formattedDate)
                     .child(formattedTime);
-
-                entryRef = entryRef.child(formattedTime);
+                
                 entryRef.setValue(entry).await();
 
             } catch (e: Exception) {
