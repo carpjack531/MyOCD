@@ -13,15 +13,15 @@ import com.example.myocd.fragments.MenuBar
 import com.example.myocd.fragments.ObsessionCompulsionFragment
 import com.example.myocd.fragments.OutcomeFragment
 import com.example.myocd.viewmodels.AddEntryViewModel
-import com.example.myocd.viewmodels.EntryRepository
+import com.example.myocd.viewmodels.EntryRepositoryViewModel
 class AddEntryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddEntryPageBinding;
     private lateinit var obsessionCompulsion: ObsessionCompulsionFragment;
     val entryViewModel: AddEntryViewModel by lazy{
         ViewModelProvider(this)[AddEntryViewModel::class.java];
     }
-    val entryRepo: EntryRepository by lazy{
-        ViewModelProvider(this)[EntryRepository::class.java];
+    val entryRepo: EntryRepositoryViewModel by lazy{
+        ViewModelProvider(this)[EntryRepositoryViewModel::class.java];
     }
 
 
@@ -44,7 +44,7 @@ class AddEntryActivity : AppCompatActivity() {
         }
 
         //Observable: Check if a page swap is called
-        entryViewModel._readablePage.observe(this){ newPage->
+        entryViewModel.readablePage.observe(this){ newPage->
             if(newPage == 2){
                 obsessionCompulsion = ObsessionCompulsionFragment();
                 supportFragmentManager.beginTransaction()
@@ -60,10 +60,13 @@ class AddEntryActivity : AppCompatActivity() {
         }
 
         //Observable: Check if operation is complete
-        entryRepo._readableOperationComplete.observe(this){operationSuccessful->
-            if(operationSuccessful){
+        entryRepo.readableOperationSuccessful.observe(this){operationSuccessful->
+            if(operationSuccessful == true){
                 Toast.makeText(this@AddEntryActivity, "Entry saved successfully", Toast.LENGTH_SHORT).show()
                 finish();
+            }
+            else if(operationSuccessful==false){
+                Toast.makeText(this@AddEntryActivity, "Entry saved error", Toast.LENGTH_SHORT).show()
             }
         }
     }

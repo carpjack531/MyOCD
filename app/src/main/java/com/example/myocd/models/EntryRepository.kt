@@ -1,24 +1,20 @@
-package com.example.myocd.viewmodels
+package com.example.myocd.models
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.myocd.models.Entry
+
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import kotlinx.coroutines.Dispatchers
 
-class EntryRepository: ViewModel(){
-    private val operationComplete = MutableLiveData<Boolean>(false);
-    public val _readableOperationComplete: LiveData<Boolean> =  operationComplete;
+
+class EntryRepository {
     private val db = Firebase.database;
-    fun saveEntryToDatabase(entry:Entry){
-        viewModelScope.launch {
+    suspend fun saveEntryToDatabase(entry:Entry): Boolean{
+        withContext(Dispatchers.IO) {
             try {
                 val currentTime = LocalTime.now();
                 val formattedDate = LocalDate.now()
@@ -35,23 +31,13 @@ class EntryRepository: ViewModel(){
                 }
                 entryRef = entryRef.child(formattedTime);
                 entryRef.setValue(entry).await();
-                operationComplete.value = true;
 
             } catch (e: Exception) {
-                println("saveEntryException: " + e.message);
+                println("saveEntryToDatabase Error: ${e.message}")
+                return@withContext false;
             }
         }
+
+        return true;
     }
-
-    fun loadEntries() {
-
-    }
-
-    fun loadEntry() {
-
-    }
-
-    fun updateEntry(){
-
-    }
- }
+}

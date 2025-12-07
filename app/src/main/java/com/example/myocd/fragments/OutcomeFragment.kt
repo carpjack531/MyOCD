@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myocd.databinding.FragmentOutcomeBinding
 import com.example.myocd.viewmodels.AddEntryViewModel
-import com.example.myocd.viewmodels.EntryRepository
+import com.example.myocd.viewmodels.EntryRepositoryViewModel
 
 class OutcomeFragment : Fragment() {
 
@@ -18,8 +18,8 @@ class OutcomeFragment : Fragment() {
         ViewModelProvider(requireActivity())[AddEntryViewModel::class.java];
     }
 
-    private val entryRepo: EntryRepository by lazy{
-        ViewModelProvider(requireActivity())[EntryRepository::class.java];
+    private val entryRepo: EntryRepositoryViewModel by lazy{
+        ViewModelProvider(requireActivity())[EntryRepositoryViewModel::class.java];
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class OutcomeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Invalid input. Please check the fields and try again.", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    entryRepo.saveEntryToDatabase(entryViewModel._readableEntry.value);
+                    entryRepo.saveEntryToDatabase(entryViewModel.readableEntry.value);
                 }
             }
         }

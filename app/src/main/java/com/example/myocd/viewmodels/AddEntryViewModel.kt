@@ -10,8 +10,8 @@ class AddEntryViewModel : ViewModel() {
 
     private val entry = MutableLiveData<Entry>(Entry());
     private val page = MutableLiveData<Int>(1);
-    val _readablePage: LiveData<Int> = page;
-    val _readableEntry: LiveData<Entry> = entry;
+    val readablePage: LiveData<Int> = page;
+    val readableEntry: LiveData<Entry> = entry;
 
     fun setPage(newPage: Int) {
         println("setPage: $page");
