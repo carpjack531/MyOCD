@@ -12,66 +12,66 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myocd.R
 import com.example.myocd.databinding.FragmentDisplayDatesBinding
 import com.example.myocd.viewmodels.EntryRepositoryViewModel
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import com.example.myocd.viewmodels.HistoryViewModel
 
 
-class DateAdapter(private var dates:List<String>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //Click Listener
-        val textView: TextView = view.findViewById(R.id.entry)
-
-        init{
-            textView.setOnClickListener {
-                println("DateAdapter: Click Registered");
+class DisplayDaysFragment : Fragment() {
+    private inner class DateAdapter(private var dates:List<String>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            //Click Listener
+            val textView: TextView = view.findViewById(R.id.entry)
+            init{
+                textView.setOnClickListener {
+                    historyViewModel.setSelectedDate(textView.text.toString());
+                }
             }
+
+        }
+
+        fun updateDates(dates:List<String>){
+            this.dates = dates;
+            notifyDataSetChanged();
+        }
+
+        //Creates new views for list items
+        override fun onCreateViewHolder(
+            viewGroup: ViewGroup,
+            viewType: Int
+        ): DateAdapter.ViewHolder {
+            val view = LayoutInflater.from(viewGroup.context)
+                .inflate(R.layout.entry_view, viewGroup, false)
+            return ViewHolder(view)
+        }
+
+        //Replaces contents of view
+        override fun onBindViewHolder(
+            holder: ViewHolder,
+            position: Int
+        ) {
+            holder.textView.text = dates[position];
+        }
+
+        //Returns size of dataset
+        override fun getItemCount(): Int {
+            return dates.size;
         }
 
     }
-
-    fun updateDates(dates:List<String>){
-        this.dates = dates;
-        notifyDataSetChanged();
-    }
-    //Creates new views for list items
-    override fun onCreateViewHolder(
-        viewGroup: ViewGroup,
-        viewType: Int
-    ): DateAdapter.ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.entry_view, viewGroup, false)
-        return ViewHolder(view)
-    }
-
-    //Replaces contents of view
-    override fun onBindViewHolder(
-        holder: ViewHolder,
-        position: Int
-    ) {
-        holder.textView.text = dates[position];
-    }
-
-
-
-
-    //Returns size of dataset
-    override fun getItemCount(): Int {
-        return dates.size;
-    }
-
-}
-class DisplayDaysFragment : Fragment() {
     private lateinit var binding: FragmentDisplayDatesBinding;
 
     private val entryRepo: EntryRepositoryViewModel by lazy{
         ViewModelProvider(requireActivity())[EntryRepositoryViewModel::class.java];
     }
 
+    private val historyViewModel: HistoryViewModel by lazy{
+        ViewModelProvider(requireActivity())[HistoryViewModel::class.java];
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        entryRepo.getEntryDates()
+
     }
 
     override fun onCreateView(

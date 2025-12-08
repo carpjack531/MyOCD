@@ -6,4 +6,6 @@
     <color name="bg">#87D8FF</color>
     <color name="toolbar_bg2">#4CAF50</color>
     <color name="soft_green">#ACD1AF</color>
+    <color name="soft_blue">#89CFF0</color>
+
 </resources>

@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@+id/menuBarView" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/displayEntriesFragment"
+        android:id="@+id/displayDaysFragment"
         android:name="com.example.myocd.fragments.DisplayDaysFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
