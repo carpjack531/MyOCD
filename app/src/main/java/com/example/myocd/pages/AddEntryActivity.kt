@@ -12,17 +12,17 @@ import com.example.myocd.databinding.ActivityAddEntryPageBinding
 import com.example.myocd.fragments.MenuBar
 import com.example.myocd.fragments.ObsessionCompulsionFragment
 import com.example.myocd.fragments.OutcomeFragment
+import com.example.myocd.fragments.TriggerResponseFragment
 import com.example.myocd.viewmodels.AddEntryViewModel
-import com.example.myocd.viewmodels.EntryRepositoryViewModel
+
 class AddEntryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddEntryPageBinding;
-    private lateinit var obsessionCompulsion: ObsessionCompulsionFragment;
+    private val obsessionCompulsionFragment: ObsessionCompulsionFragment = ObsessionCompulsionFragment();
+    private val outcomeFragment: OutcomeFragment = OutcomeFragment();
     val entryViewModel: AddEntryViewModel by lazy {
         ViewModelProvider(this)[AddEntryViewModel::class.java];
     }
-    val entryRepo: EntryRepositoryViewModel by lazy{
-        ViewModelProvider(this)[EntryRepositoryViewModel::class.java];
-    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,24 +45,26 @@ class AddEntryActivity : AppCompatActivity() {
 
         //Observable: Check if a page swap is called
         entryViewModel.readablePage.observe(this){ newPage->
+
+
             if(newPage == 2){
-                obsessionCompulsion = ObsessionCompulsionFragment();
                 supportFragmentManager.beginTransaction()
-                    .replace(binding.fragmentTriggerResponse.id, obsessionCompulsion)
+                    .replace(binding.fragmentTriggerResponse.id, this.obsessionCompulsionFragment)
                     .commit()
+
             }
 
              if(newPage == 3){
                 supportFragmentManager.beginTransaction()
-                    .replace(obsessionCompulsion.id, OutcomeFragment())
+                    .replace(obsessionCompulsionFragment.id, this.outcomeFragment)
                     .commit()
             }
         }
 
         //Observable: Check if operation is complete
-        entryRepo.readableOperationSuccessful.observe(this){operationSuccessful->
-            if(operationSuccessful.isNotBlank()) {
-                Toast.makeText(this@AddEntryActivity, operationSuccessful, Toast.LENGTH_SHORT)
+        entryViewModel.readableSaveSuccessful.observe(this){ saveSuccessful->
+            if(saveSuccessful.isNotBlank()) {
+                Toast.makeText(this@AddEntryActivity, saveSuccessful, Toast.LENGTH_SHORT)
                     .show()
                 finish();
             }

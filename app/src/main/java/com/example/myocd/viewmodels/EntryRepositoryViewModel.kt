@@ -15,14 +15,9 @@ class EntryRepositoryViewModel: ViewModel(){
 
     private val operationSuccessful = MutableLiveData<String>("");
     private val dates = MutableLiveData<List<String>>(mutableListOf<String>())
-    private val entries = MutableLiveData<List<TimeEntry>>(mutableListOf<TimeEntry>())
 
-    public val readableOperationSuccessful: LiveData<String> =  operationSuccessful;
-    public val readableEntries:LiveData<List<TimeEntry>> = entries;
-    public val readableDates:LiveData<List<String>> = dates;
-
-    //Should return entry, for now dosent
-
+    val readableOperationSuccessful: LiveData<String> =  operationSuccessful;
+    val readableDates:LiveData<List<String>> = dates;
 
 
     fun saveEntryToDatabase(entry:Entry){

@@ -3,15 +3,28 @@ package com.example.myocd.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.myocd.classes.Entry
+import com.example.myocd.classes.EntryRepository
+import kotlinx.coroutines.launch
 
 //Main issue is the pages, they work fine-but they could 100% be a seperate viewmodel
 class AddEntryViewModel : ViewModel() {
-
+    private val repo: EntryRepository = EntryRepository();
     private val entry = MutableLiveData<Entry>(Entry());
     private val page = MutableLiveData<Int>(1);
+    private val saveSuccessful = MutableLiveData<String>("");
+
     val readablePage: LiveData<Int> = page;
-    val readableEntry: LiveData<Entry> = entry;
+    val readableSaveSuccessful:LiveData<String> = saveSuccessful;
+
+
+    fun saveEntryToDatabase(){
+        viewModelScope.launch {
+            saveSuccessful.value = repo.saveEntryToDatabase(entry.value);
+
+        }
+    }
 
     fun setPage(newPage: Int) {
         println("setPage: $page");

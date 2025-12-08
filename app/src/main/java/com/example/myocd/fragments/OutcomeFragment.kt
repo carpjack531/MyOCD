@@ -18,9 +18,6 @@ class OutcomeFragment : Fragment() {
         ViewModelProvider(requireActivity())[AddEntryViewModel::class.java];
     }
 
-    private val entryRepo: EntryRepositoryViewModel by lazy{
-        ViewModelProvider(requireActivity())[EntryRepositoryViewModel::class.java];
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +46,7 @@ class OutcomeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Invalid input. Please check the fields and try again.", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    entryRepo.saveEntryToDatabase(entryViewModel.readableEntry.value);
+                    entryViewModel.saveEntryToDatabase();
                 }
             }
         }
