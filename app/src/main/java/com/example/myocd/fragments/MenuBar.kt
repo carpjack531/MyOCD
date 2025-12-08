@@ -20,10 +20,6 @@ private const val TITLE_ARG:String = "Test"
 class MenuBar : Fragment() {
     private lateinit var return_home_btn: Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +34,7 @@ class MenuBar : Fragment() {
 
         return_home_btn.setOnClickListener {
             requireActivity().finish();
+
         }
         val title = arguments?.getString(TITLE_ARG) ?: "Default Title"
 

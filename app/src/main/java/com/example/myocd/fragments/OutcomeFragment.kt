@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myocd.databinding.FragmentOutcomeBinding
 import com.example.myocd.viewmodels.AddEntryViewModel
-import com.example.myocd.viewmodels.EntryRepositoryViewModel
 
 class OutcomeFragment : Fragment() {
 
@@ -19,9 +18,7 @@ class OutcomeFragment : Fragment() {
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

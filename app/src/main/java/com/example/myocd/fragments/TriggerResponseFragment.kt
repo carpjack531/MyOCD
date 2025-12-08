@@ -19,10 +19,7 @@ class TriggerResponseFragment : Fragment() {
     private val viewModel: AddEntryViewModel by lazy{
         ViewModelProvider(requireActivity())[AddEntryViewModel::class.java];
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

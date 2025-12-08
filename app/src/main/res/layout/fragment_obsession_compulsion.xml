@@ -9,7 +9,6 @@
 >
 
     <TextView
-        android:id="@+id/obsession_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -21,11 +20,11 @@
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:autofillHints=""
         android:inputType="textMultiLine"
         android:minHeight="48dp" />
 
     <TextView
-        android:id="@+id/compulsion_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -38,6 +37,7 @@
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:autofillHints=""
         android:inputType="textMultiLine"
         android:isScrollContainer="true"
         android:maxHeight="@dimen/entry_input_max_height"
@@ -46,7 +46,6 @@
         android:verticalScrollbarPosition="left" />
 
     <TextView
-        android:id="@+id/assessment_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -59,6 +58,7 @@
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:autofillHints=""
         android:ems="10"
         android:minHeight="48dp" />
 

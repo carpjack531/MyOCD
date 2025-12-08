@@ -10,7 +10,6 @@
     tools:context=".fragments.OutcomeFragment">
 
     <TextView
-        android:id="@+id/outcome_header"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -24,7 +23,7 @@
         android:id="@+id/outcome_input"
         android:layout_width="@dimen/entry_comp_width"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:autofillHints="" android:ems="10"
         android:inputType="numberSigned"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"

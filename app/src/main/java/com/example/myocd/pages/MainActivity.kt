@@ -1,5 +1,6 @@
 package com.example.myocd.pages
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -34,19 +35,19 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.root);
-
+        val noAnimationOptions = ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle();
         binding.apply{
             addBtn.setOnClickListener {
-                startActivity(intents[ACTIVITIES.ADD_ENTRY]);
+                startActivity(intents[ACTIVITIES.ADD_ENTRY], noAnimationOptions);
 
             }
 
             historyBtn.setOnClickListener{
-                startActivity(intents[ACTIVITIES.HISTORY]);
+                startActivity(intents[ACTIVITIES.HISTORY], noAnimationOptions);
             }
 
             settingsBtn.setOnClickListener{
-                startActivity(intents[ACTIVITIES.SETTINGS]);
+                startActivity(intents[ACTIVITIES.SETTINGS], noAnimationOptions);
             }
         }
 

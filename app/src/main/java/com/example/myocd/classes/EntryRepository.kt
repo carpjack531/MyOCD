@@ -1,3 +1,5 @@
+@file:Suppress("RemoveCurlyBracesFromTemplate")
+
 package com.example.myocd.classes
 
 
@@ -12,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlin.collections.emptyList
 
 
+@Suppress("RemoveCurlyBracesFromTemplate")
 class EntryRepository {
     private val db = Firebase.database;
     private val entriesRef = db.reference.child("entries");
@@ -66,8 +69,8 @@ class EntryRepository {
 
 
 
-    suspend fun getEntryDates(): List<String>?{
-        var entryDates: List<String>? = null;
+    suspend fun getDates(): List<String>?{
+        var dates: List<String>? = null;
         withContext(Dispatchers.IO){
             try{
                 val entriesSnapshot = entriesRef.get().await();
@@ -75,50 +78,39 @@ class EntryRepository {
                     throw Exception("Entries does not exist, or has no dates");
                 }
 
-                entryDates =  entriesSnapshot.children.map{
+                dates =  entriesSnapshot.children.map{
                     it.key.toString();
                 }
-            }catch(e: Exception){
-
+            }
+            catch(e: Exception){
+                println("getEntryDates Error: ${e.message}");
             }
         }
 
-        return entryDates;
+        return dates;
     }
 
-
-    suspend fun getEntriesByDate(date: String): List<TimeEntry>? {
-        //hopefully dosent cause issues
-        var entriesInDate: List<TimeEntry>? = null;
-        withContext(Dispatchers.IO) {
-            try {
-                val dateSnapshot = entriesRef
-                    .child(date)
-                    .get().await();
-
-                if (!dateSnapshot.exists()) {
-                    throw Exception("Date \"${date}\" does not exist");
+    suspend fun getTimesByDate(date:String): List<String>?{
+        var times:List<String>? = null;
+        withContext(Dispatchers.IO){
+            try{
+                val entriesSnapshot = entriesRef.child(date).get().await();
+                if(!entriesSnapshot.exists()){
+                    throw Exception("Entries does not exist, or has no dates");
                 }
 
-                entriesInDate = dateSnapshot.children.map {
-                    val key: String = it.key.toString();
-                    val value = it.getValue(Entry::class.java)
-
-                    TimeEntry(key, value);
-
+                times =  entriesSnapshot.children.map{
+                    it.key.toString();
                 }
-                println("entryDates: ${entriesInDate.toString()}");
-
-            } catch (e: Exception) {
-                println("getEntriesByDate Error: ${e.message}");
-                return@withContext emptyList<String>();
             }
-        }
+            catch(e: Exception){
+                println("getEntryDates Error: ${e.message}");
+            }
 
-        return entriesInDate;
+        }
+        return times;
     }
 
-    //Should return entry, for now dosen't
     suspend fun getEntryByDateTime(date: String, time: String): Entry? {
         withContext(Dispatchers.IO) {
             try {

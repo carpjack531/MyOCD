@@ -1,6 +1,7 @@
 package com.example.myocd.pages
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -8,8 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.myocd.R
 import com.example.myocd.databinding.ActivityHistoryPageBinding
-import com.example.myocd.fragments.DisplayTimeFragment
-import com.example.myocd.viewmodels.EntryRepositoryViewModel
+import com.example.myocd.fragments.DisplayTimeRecycler
 import com.example.myocd.viewmodels.HistoryViewModel
 
 class HistoryActivity : AppCompatActivity() {
@@ -19,9 +19,8 @@ class HistoryActivity : AppCompatActivity() {
         ViewModelProvider(this)[HistoryViewModel::class.java];
     }
 
-    private val entryRepo: EntryRepositoryViewModel by lazy{
-        ViewModelProvider(this)[EntryRepositoryViewModel::class.java];
-    }
+    private var timeFragment = DisplayTimeRecycler();
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +33,26 @@ class HistoryActivity : AppCompatActivity() {
             insets
         }
 
-        //Swap Fragments if a Date is selectable
-        historyViewModel.readableSelectedDate.observe(this) { date ->
+        //Could prbbly make this one observable then have it all done in one observable statement
+
+        //Swap Fragments if a Date is selected
+        historyViewModel.readableSelectedDate.observe(this) {
             supportFragmentManager.beginTransaction()
-                .replace(binding.displayDaysFragment.id, DisplayTimeFragment())
+                .replace(binding.displayDaysFragment.id, DisplayTimeRecycler())
                 .commit()
         }
 
+        //Swap Fragments if a Time is selected
+        historyViewModel.readableSelectedTime.observe(this){
+            supportFragmentManager.beginTransaction()
+                .replace(timeFragment.id, DisplayTimeRecycler())
+                .commit()
+        }
+
+        historyViewModel.readableOperationMessage.observe(this){msg->
+            Toast.makeText(this@HistoryActivity, msg, Toast.LENGTH_SHORT)
+                .show()
+        }
 
 
     }

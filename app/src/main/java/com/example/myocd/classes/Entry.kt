@@ -10,9 +10,14 @@ package com.example.myocd.classes
     var outcome:Int=0,
 )
 
+data class DateEntry(
+   val date:String,
+   val entries: List<TimeEntry>
+)
+
 data class TimeEntry(
    val time: String,
-   val entry: Entry?,
+   val timeEntries: Entry?,
 
 )
 

@@ -1,23 +1,20 @@
 package com.example.myocd.fragments
 
-import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myocd.classes.IHistoryRecycler;
-import com.example.myocd.viewmodels.EntryRepositoryViewModel
-import com.example.myocd.viewmodels.HistoryViewModel
 
 
-class DisplayDateRecyclcer : IHistoryRecycler() {
+
+class DisplayDatesRecycler : IHistoryRecycler() {
     override fun clickAction(date:String){
         historyViewModel.setSelectedDate(date);
     }
     override fun setObserveBehavior(){
-        entryRepo.readableDates.observe(viewLifecycleOwner){dates->
-            dateAdapter.updateDates(dataset);
+        historyViewModel.readableDataset.observe(viewLifecycleOwner){data->
+            dateAdapter.updateDataset(data?: emptyList());
         }
+       historyViewModel.fetchDates();
     }
+
 }
 
 class DisplayTimeRecycler : IHistoryRecycler() {
@@ -26,9 +23,10 @@ class DisplayTimeRecycler : IHistoryRecycler() {
     }
 
     override fun setObserveBehavior(){
-        entryRepo.readableDates.observe(viewLifecycleOwner){dates->
-            dateAdapter.updateDates(dataset);
+        historyViewModel.readableDataset.observe(viewLifecycleOwner){data-> ;
+            dateAdapter.updateDataset(data?: emptyList());
         }
+        historyViewModel.fetchTimes();
     }
 
 

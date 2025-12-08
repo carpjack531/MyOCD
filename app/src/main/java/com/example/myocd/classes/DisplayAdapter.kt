@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myocd.R
 
 class DisplayAdapter(private var dataset:List<String>, private val clickAction:(String)->Unit): RecyclerView.Adapter<DisplayAdapter.ViewHolder>() {
-       inner class ViewHolder(view: View, ) : RecyclerView.ViewHolder(view) {
-        //Click Listener
+    //Click Listener
+    inner class ViewHolder(view: View, ) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.entry)
         init{
             textView.setOnClickListener {
@@ -19,16 +19,16 @@ class DisplayAdapter(private var dataset:List<String>, private val clickAction:(
 
     }
 
-    fun updateDates(dates:List<String>){
-        this.dataset = dates;
-        notifyDataSetChanged();
+    fun updateDataset(dataset: List<String>){
+        this.dataset = dataset;
+        notifyItemRangeInserted(0, dataset.size)
     }
 
     //Creates new views for list items
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         viewType: Int
-    ): DisplayAdapter.ViewHolder {
+    ): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.entry_view, viewGroup, false)
         return ViewHolder(view)
