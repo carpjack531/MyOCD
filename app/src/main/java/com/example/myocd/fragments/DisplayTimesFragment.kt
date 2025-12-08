@@ -16,7 +16,17 @@ import com.example.myocd.viewmodels.HistoryViewModel
 
 
 
-class DisplayDaysFragment : Fragment() {
+class DisplayTimesFragment : Fragment() {
+    //Not ideal, but it'll do for now
+    private lateinit var binding: FragmentDisplayDatesBinding;
+
+    private val entryRepo: EntryRepositoryViewModel by lazy{
+        ViewModelProvider(requireActivity())[EntryRepositoryViewModel::class.java];
+    }
+
+    private val historyViewModel: HistoryViewModel by lazy{
+        ViewModelProvider(requireActivity())[HistoryViewModel::class.java];
+    }
     private inner class DateAdapter(private var dates:List<String>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             //Click Listener
@@ -58,15 +68,7 @@ class DisplayDaysFragment : Fragment() {
         }
 
     }
-    private lateinit var binding: FragmentDisplayDatesBinding;
 
-    private val entryRepo: EntryRepositoryViewModel by lazy{
-        ViewModelProvider(requireActivity())[EntryRepositoryViewModel::class.java];
-    }
-
-    private val historyViewModel: HistoryViewModel by lazy{
-        ViewModelProvider(requireActivity())[HistoryViewModel::class.java];
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -30,12 +30,13 @@ class HistoryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //Swap Fragments if a Date is selectable
         historyViewModel.readableSelectedDate.observe(this) { date ->
             supportFragmentManager.beginTransaction()
                 .replace(binding.displayDaysFragment.id, DisplayEntriesFragment())
                 .commit()
         }
-
 
 
     }
